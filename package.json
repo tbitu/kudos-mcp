@@ -1,0 +1,36 @@
+{
+  "name": "kudos-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for the public Kudos open-data API.",
+  "type": "module",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "dev": "tsx watch app/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:smoke": "KUDOS_SMOKE_TEST=1 vitest run app/api/realApi.smoke.test.ts"
+  },
+  "keywords": [
+    "mcp",
+    "kudos",
+    "dfo",
+    "typescript"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}
