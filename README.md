@@ -1,6 +1,6 @@
 # kudos-mcp
 
-![Docker](https://img.shields.io/badge/docker-ghcr.io-blue)
+[![Docker](https://img.shields.io/badge/docker-ghcr.io-blue)](https://github.com/tbitu/kudos-mcp/pkgs/container/kudos-mcp)
 ![Node](https://img.shields.io/badge/node-22%2B-green)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
@@ -38,7 +38,7 @@ Add this to your MCP client configuration:
         "run",
         "-i",
         "--rm",
-        "ghcr.io/<owner>/kudos-mcp:latest"
+        "ghcr.io/tbitu/kudos-mcp:latest"
       ]
     }
   }
@@ -60,14 +60,12 @@ Pass optional server configuration through Docker environment variables when nee
         "KUDOS_REQUEST_TIMEOUT_MS=15000",
         "-e",
         "KUDOS_MAX_CONTENT_CHARS=12000",
-        "ghcr.io/<owner>/kudos-mcp:latest"
+        "ghcr.io/tbitu/kudos-mcp:latest"
       ]
     }
   }
 }
 ```
-
-Replace `<owner>` with the GitHub user or organization that hosts this repository.
 
 ### Using Node Locally
 
@@ -181,7 +179,7 @@ MIT. See `LICENSE`.
 
 ## CI/CD
 
-GitHub Actions builds and publishes a multi-platform Docker image to `ghcr.io/${owner}/${repo}` on every push to `main`.
+GitHub Actions builds and publishes a multi-platform Docker image to `ghcr.io/tbitu/kudos-mcp` on every push to `main`.
 
 Published tags include:
 
