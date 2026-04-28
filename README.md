@@ -1,6 +1,10 @@
 # kudos-mcp
 
-`kudos-mcp` is a local stdio MCP server for the public Kudos open-data API at `https://kudos.dfo.no/api/v0`.
+![Docker](https://img.shields.io/badge/docker-ghcr.io-blue)
+![Node](https://img.shields.io/badge/node-22%2B-green)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+
+`kudos-mcp` is a stdio MCP server for the public Kudos open-data API at `https://kudos.dfo.no/api/v0`.
 
 It requires no API key or other credentials.
 
@@ -18,6 +22,54 @@ It exposes public, no-auth access to:
 - npm 11+
 
 ## Install
+
+### Using Docker (Recommended)
+
+Pre-built images are published to GitHub Container Registry and support both `linux/amd64` and `linux/arm64`.
+
+Add this to your MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    "kudos": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "ghcr.io/<owner>/kudos-mcp:latest"
+      ]
+    }
+  }
+}
+```
+
+Pass optional server configuration through Docker environment variables when needed:
+
+```json
+{
+  "mcpServers": {
+    "kudos": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "KUDOS_REQUEST_TIMEOUT_MS=15000",
+        "-e",
+        "KUDOS_MAX_CONTENT_CHARS=12000",
+        "ghcr.io/<owner>/kudos-mcp:latest"
+      ]
+    }
+  }
+}
+```
+
+Replace `<owner>` with the GitHub user or organization that hosts this repository.
+
+### Using Node Locally
 
 ```bash
 npm install
@@ -51,6 +103,13 @@ npm run dev
 
 ```bash
 npm run dev
+```
+
+Build and test the Docker image locally:
+
+```bash
+docker build -t kudos-mcp .
+docker run -i --rm kudos-mcp
 ```
 
 ## Build
@@ -119,3 +178,14 @@ Optional environment variables:
 ## License
 
 MIT. See `LICENSE`.
+
+## CI/CD
+
+GitHub Actions builds and publishes a multi-platform Docker image to `ghcr.io/${owner}/${repo}` on every push to `main`.
+
+Published tags include:
+
+- `latest`
+- branch name
+- commit SHA
+- semver tags when the repository is tagged with a version
